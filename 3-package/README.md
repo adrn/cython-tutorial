@@ -15,7 +15,7 @@ Cython code dependencies.
 
 For now, we're going to just build the code in place. We do that with:
 
-```
+```bash
 python setup.py build_ext --inplace
 ```
 

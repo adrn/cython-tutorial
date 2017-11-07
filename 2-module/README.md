@@ -7,8 +7,8 @@ object. The command-line tool supports the annotate feature, just like the
 IPython magic command via the flag `-a`. To generate a C file from this Cython
 code with an annotation page, execute:
 
-```
-cython -a leapfrog.pyx
+```bash
+% cython -a leapfrog.pyx
 ```
 
 You should now see 2 new files in this directory: `leapfrog.c` and
@@ -30,7 +30,7 @@ now compile the `leapfrog.c` file. This will depend on your system and Python
 installation, but it will be something like this, which is what works on my Mac
 with an Anaconda Python 3.5 install in my home directory:
 
-```
+```bash
 % gcc -fwrapv -O2 -Wall --std=gnu99 -Wp,-w -Wno-unused-function \
     -arch x86_64 -I/Users/adrian/anaconda/include/ \
     -arch x86_64 -I/Users/adrian/anaconda/lib/python3.5/site-packages/numpy/core/include \
@@ -41,7 +41,7 @@ with an Anaconda Python 3.5 install in my home directory:
 
 Hint: to find your numpy include path, start a Python shell and do:
 
-```
+```bash
 % python
 >>> import numpy
 >>> numpy.get_include()
@@ -51,7 +51,7 @@ Hint: to find your numpy include path, start a Python shell and do:
 Now you should be able to import the `leapfrog` as a module. Let's try this from
 the Python shell:
 
-```
+```bash
 % python
 >>> from leapfrog import leapfrog_integrate
 ```
