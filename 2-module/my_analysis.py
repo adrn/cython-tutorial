@@ -2,16 +2,10 @@
 Here we execute some analysis using orbits integrated in a Hernquist potential.
 """
 
-# Standard library
-import os
-from os import path
-import sys
-
 # Third-party
 from astropy.constants import G
 import astropy.units as u
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Project
 from leapfrog import leapfrog_integrate
