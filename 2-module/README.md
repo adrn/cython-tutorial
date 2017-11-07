@@ -58,3 +58,9 @@ the Python shell:
 
 Good! Now let's try running the `my_analysis.py` script and make sure the
 function works.
+
+Now we have an idea of how to compile Cython code, but this is cumbersome, and
+does not scale well when you have multiple Cython modules. It's also not the
+recommended way of building Cython code - a better way to do it is to use the
+Python packaging tools through `distutils`. We'll see how to do that in the next
+example.
