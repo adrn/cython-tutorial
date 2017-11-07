@@ -9,7 +9,7 @@ from libc.math cimport sqrt
 
 cimport cython
 
-cdef void acc_cy6(double[::1] xyz, double G, double m, double a,
+cdef void acc(double[::1] xyz, double G, double m, double a,
                   double[::1] a_xyz):
     cdef:
         double r
@@ -22,7 +22,7 @@ cdef void acc_cy6(double[::1] xyz, double G, double m, double a,
     a_xyz[1] = -dPhi_dr * xyz[1] / r
     a_xyz[2] = -dPhi_dr * xyz[2] / r
 
-cpdef leapfrog_cy6(x0, v0, double dt, int n_steps, hernquist_args=()):
+cpdef leapfrog_integrate(x0, v0, double dt, int n_steps, hernquist_args=()):
     cdef:
         # define memoryview's for initial conditions
         double[::1] _x0 = np.array(x0, np.float64)
@@ -48,7 +48,7 @@ cpdef leapfrog_cy6(x0, v0, double dt, int n_steps, hernquist_args=()):
         double c = float(hernquist_args[2])
 
     # get the acceleration at the initial position
-    acc_cy6(_x0, G, m, c, a_i)
+    acc(_x0, G, m, c, a_i)
 
     # if i is cython typed, this will be a much more efficient C loop
     for k in range(3):
@@ -62,7 +62,7 @@ cpdef leapfrog_cy6(x0, v0, double dt, int n_steps, hernquist_args=()):
         for k in range(3):
             x[i,k] = x[i-1,k] + v_iminus1_2[k] * dt # full step
 
-        acc_cy6(x[i], G, m, c, a_i)
+        acc(x[i], G, m, c, a_i)
 
         for k in range(3):
             v[i,k] = v_iminus1_2[k] + a_i[k] * dt/2. # half step
